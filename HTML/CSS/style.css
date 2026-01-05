@@ -1,8 +1,31 @@
+body{
+    height: 100vh;
+    background-color: rgb(117, 117, 117);
+}
 #regform{
+    margin-top: 10%;
     width: 33%;
+    height: 33%;
     margin-left: 33%;
     border: 2px solid black;
     border-radius: 10px;
     padding: 5px;
+    background-color: rgb(145, 145, 145);
 
 }
+
+
+h1{
+    text-align: center;
+}
+
+label{
+    margin-left: 20%;
+    
+}
+
+a{
+    text-decoration: none;
+    display: block;
+    margin-top: 40px;
+    }
