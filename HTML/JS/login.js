@@ -6,16 +6,16 @@ const jelsz=document.getElementById("jelszo");
 
 form.addEventListener("submit" , function (event) {event.preventDefault()
 
-    let username = localStorage.setItem("rfnev",fnev)
-    let useremail = localStorage.setItem("remail",email)
-    let userpass = localStorage.setItem("rpassword",jelsz)
+    let username = localStorage.setItem("fnev",fnev)
+    let useremail = localStorage.setItem("email",email)
+    let userpass = localStorage.setItem("password",jelsz)
 
 
 
 
 
-
-
+    localStorage.setItem("jelenlegi",username)
+    alert("Sikeres bejelentkezés!");
     window.location.href="main.html";
 
  } )

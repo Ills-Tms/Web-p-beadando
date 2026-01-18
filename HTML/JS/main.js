@@ -1,4 +1,4 @@
-let udv =localStorage.getItem("username")
+let udv =localStorage.getItem("jelenlegi")
 
 
 alert("Üdvözöllek"+udv+"!")
