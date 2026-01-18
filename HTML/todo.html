@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/main.css">
-    <title>Main page</title>
+    <script src="JS/todo.js" defer></script>
+    <title>Beadando</title>
 </head>
 <body>
-    <h1>Főoldal</h1>
+    <h1>ToDo</h1>
     
    <nav>
         <div id="navgomb"><a href="index.html">Regisztráci</a></div>
@@ -17,6 +18,20 @@
         <div id="navgomb"><a href="bevasarlolista.html">Bevásárlólista</a></div>
         <div id="navgomb"><a href="minigames.html">Minigames</a></div>
     </nav>
+
+
+
+        <input type="text" id="todoText" placeholder="Feladat megnevezése">
+
+<select id="priority">
+    <option value="low">Alacsony</option>
+    <option value="medium">Közepes</option>
+    <option value="high">Magas</option>
+</select>
+
+<button onclick="addTodo()">Hozzáadás</button>
+
+<ul id="todoList"></ul>
 
       
 
