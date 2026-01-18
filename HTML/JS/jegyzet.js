@@ -1,14 +1,10 @@
-const loggedUser = localStorage.getItem("loggedUser");
-
-if (!loggedUser) {
-    window.location.href = "login.html";
-}
+const loggedUser = localStorage.getItem("jelenlegi");
+if (!loggedUser) window.location.href = "login.html";
 
 const storageKey = `notes_${loggedUser}`;
 let notes = JSON.parse(localStorage.getItem(storageKey)) || [];
 
 const notesList = document.getElementById("notesList");
-const noteText = document.getElementById("noteText");
 
 function saveNotes() {
     localStorage.setItem(storageKey, JSON.stringify(notes));
@@ -19,7 +15,12 @@ function renderNotes() {
 
     notes.forEach((note, index) => {
         const li = document.createElement("li");
-        li.textContent = note;
+
+        li.innerHTML = `
+            <strong>${note.title}</strong>
+            <em>(${note.category})</em><br>
+            ${note.text}
+        `;
 
         const editBtn = document.createElement("button");
         editBtn.textContent = "Szerkesztés";
@@ -37,14 +38,24 @@ function renderNotes() {
 }
 
 function addNote() {
-    const text = noteText.value.trim();
+    const title = document.getElementById("noteTitle").value.trim();
+    const text = document.getElementById("noteText").value.trim();
+    const category = document.getElementById("noteCategory").value;
+
     if (!text) {
-        alert("A jegyzet nem lehet üres!");
+        alert("A jegyzet szövege nem lehet üres!");
         return;
     }
 
-    notes.push(text);
-    noteText.value = "";
+    notes.push({
+        title: title || "Névtelen jegyzet",
+        text: text,
+        category: category
+    });
+
+    document.getElementById("noteTitle").value = "";
+    document.getElementById("noteText").value = "";
+
     saveNotes();
     renderNotes();
 }
@@ -57,10 +68,10 @@ function deleteNote(index) {
 }
 
 function editNote(index) {
-    const newText = prompt("Jegyzet módosítása:", notes[index]);
+    const newText = prompt("Jegyzet módosítása:", notes[index].text);
     if (newText === null || newText.trim() === "") return;
 
-    notes[index] = newText.trim();
+    notes[index].text = newText.trim();
     saveNotes();
     renderNotes();
 }

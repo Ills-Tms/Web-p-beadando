@@ -20,11 +20,21 @@
     </nav>
 
 
-       <textarea id="noteText" placeholder="Írd ide a jegyzetet..."></textarea>
-       <br>
-       <button onclick="addNote()">Jegyzet hozzáadása</button>
+      <input type="text" id="noteTitle" placeholder="Cím">
+<textarea id="noteText" placeholder="Jegyzet szövege..."></textarea>
 
-       <ul id="notesList"></ul>
+<select id="noteCategory">
+    <option value="Általános">Általános</option>
+    <option value="Tanulás">Tanulás</option>
+    <option value="Munka">Munka</option>
+    <option value="Emlékeztető">Emlékeztető</option>
+</select>
+
+<br>
+<button onclick="addNote()">Jegyzet hozzáadása</button>
+
+<ul id="notesList"></ul>
+
 
       
 
