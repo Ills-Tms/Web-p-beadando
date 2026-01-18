@@ -1,21 +1,26 @@
-const form =document.getElementById("regform");
-const fnev=document.getElementById("fnev");
-const email=document.getElementById("email");
-const jelsz=document.getElementById("jelszo");
-const btn=document.getElementById("");
-
-form.addEventListener("submit" , function (event) {event.preventDefault()
-
-    let username = localStorage.setItem("rfnev",fnev)
-    let useremail = localStorage.setItem("remail",email)
-    let userpass = localStorage.setItem("rpassword",jelsz)
+const form =document.getElementById("registerform")
 
 
 
+form.addEventListener("submit", function (event) {event.preventDefault()
 
+    let users = JSON.parse(localStorage.getItem("felhasznalok"))
 
-
-
-    window.location.href="login.html";
-
- } )
+    const username = document.getElementById("fnev").value
+    const email = document.getElementById("email").value
+    const password = document.getElementById("jelsz").value
+    
+    
+    const userExists = users.some(user => user.email === email || user.username === usernameR)
+    
+    const ujszemely = { 
+        username: usernameR,
+        email: email,
+        password : password
+    }
+    
+    users.push(ujszemely)
+    localStorage.setItem("felhasznalok", JSON.stringify(users))
+    
+    window.location.href = "login.html"
+})
