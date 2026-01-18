@@ -1,4 +1,4 @@
-let udv =localStorage.getItem("jelenlegi")
+let udv =JSON.parse( localStorage.getItem("jelenlegi"))
 
 
 alert("Üdvözöllek"+udv+"!")

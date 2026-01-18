@@ -1,21 +1,44 @@
-const form =document.getElementById("loginform");
-const fnev=document.getElementById("fnev");
-const email=document.getElementById("email");
-const jelsz=document.getElementById("jelszo");
+document.addEventListener("DOMContentLoaded", function () {
 
+    const form = document.getElementById("loginform");
+    const fnevinput = document.getElementById("fnev");
+    const jelsznput = document.getElementById("jelsz");
 
-form.addEventListener("submit" , function (event) {event.preventDefault()
+    if (!form || !fnevinput || !jelsznput) {
+        console.error("Login form elemei hiányoznak!");
+        return;
+    }
 
-    let username = localStorage.setItem("fnev",fnev)
-    let useremail = localStorage.setItem("email",email)
-    let userpass = localStorage.setItem("password",jelsz)
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
+        const username = fnevinput.value.trim();
+        const password = jelsznput.value;
 
+        let users = [];
+        try {
+            users = JSON.parse(localStorage.getItem("users")) || [];
+        } catch {
+            users = [];
+        }
 
+        if (users.length === 0) {
+            alert("Nincs regisztrált felhasználó!");
+            return;
+        }
 
+        const user = users.find(
+            u => u.username === username && u.password === password
+        );
 
-    localStorage.setItem("jelenlegi",username)
-    alert("Sikeres bejelentkezés!");
-    window.location.href="main.html";
+        if (!user) {
+            alert("Hibás felhasználónév vagy jelszó!");
+            return;
+        }
 
- } )
+       
+        localStorage.setItem("jelenlegi", user.username);
+        alert("Sikeres bejelentkezés!");
+        window.location.href = "main.html";
+    });
+});
