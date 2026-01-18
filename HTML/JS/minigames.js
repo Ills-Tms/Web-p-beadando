@@ -1,3 +1,5 @@
+
+//sorbanyomkodos (regi orai munka volt )
 const gameArea = document.querySelector('#gamearea')
 const startButton = document.querySelector('#start')
 const szamlalo = document.querySelector('#szamlalo')
@@ -78,3 +80,68 @@ startButton.addEventListener('click', function () {
   shuffleNumbers()
   fillShowBoxes()
 })
+
+//kopapir
+
+const container = document.getElementById("kopapir");
+
+
+
+    container.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+            playKopapir(btn.dataset.choice);
+        });
+    });
+
+
+function playKopapir(playerChoice) {
+    const choices = ["ko", "papir", "ollo"];
+    const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+    let result = `Te: ${playerChoice} | Gép: ${computerChoice} → `;
+
+    if (playerChoice === computerChoice) {
+        result += "Döntetlen!";
+    } else if (
+        (playerChoice === "ko" && computerChoice === "ollo") ||
+        (playerChoice === "papir" && computerChoice === "ko") ||
+        (playerChoice === "ollo" && computerChoice === "papir")
+    ) {
+        result += "Nyertél ";
+    } else {
+        result += "Vesztettél ";
+    }
+
+    document.getElementById("kopapirresult").textContent = result;
+}
+
+//guess the number
+
+const guessContainer = document.getElementById("guessthenum");
+ let secretNumber = Math.floor(Math.random() * 100) + 1;
+
+
+    document.getElementById("guessBtn").addEventListener("click", makeGuess);
+
+
+function makeGuess() {
+    const input = document.getElementById("guessInput");
+    const result = document.getElementById("guessResult");
+   
+    
+    const guess = Number(input.value);
+    
+
+    if (!guess || guess < 1 || guess > 100) {
+        result.textContent = "1 és 100 közötti számot adj meg!";
+        return;
+    }
+
+    if (guess == secretNumber) {
+        result.textContent = " Eltaláltad!";
+    } else if (guess < secretNumber) {
+        result.textContent = " Nagyobb számra gondoltam.";
+    } else {
+        result.textContent = "⬇ Kisebb számra gondoltam.";
+    }
+}
