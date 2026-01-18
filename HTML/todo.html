@@ -22,16 +22,16 @@
 
 
         <input type="text" id="todoText" placeholder="Feladat megnevezése">
+        <br>
+        <select id="priority">
+             <option value="low">Alacsony</option>
+             <option value="medium">Közepes</option>
+             <option value="high">Magas</option>
+        </select>
+        <br>
+        <button onclick="addTodo()">Hozzáadás</button>
 
-<select id="priority">
-    <option value="low">Alacsony</option>
-    <option value="medium">Közepes</option>
-    <option value="high">Magas</option>
-</select>
-
-<button onclick="addTodo()">Hozzáadás</button>
-
-<ul id="todoList"></ul>
+        <ul id="todoList"></ul>
 
       
 
